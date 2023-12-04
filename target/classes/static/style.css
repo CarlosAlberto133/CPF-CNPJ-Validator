@@ -1,0 +1,107 @@
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 20px 300px;
+}
+
+.nav {
+    text-align: center;
+}
+
+.formCPF,
+.formCNPJ {
+    display: flex;
+    justify-content: center;
+}
+
+a {
+    color: #888;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+h1 {
+    color: #333;
+}
+
+h2 {
+    color: #666;
+    text-align: center;
+}
+
+h3 {
+    color: #888;
+}
+
+p {
+    color: #555;
+}
+
+#apiInfo {
+    margin-top: 20px;
+}
+
+#apiInfo h2 {
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 5px;
+}
+
+#apiInfo h3 {
+    margin-top: 10px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+input {
+    padding: 5px;
+    margin-bottom: 10px;
+}
+
+button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 8px 12px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+#cpfForm, #cnpjForm {
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+#cpfResult, #cnpjResult {
+    margin-top: 10px;
+    padding: 10px;
+    border-radius: 4px;
+}
+
+#cpfResult.error, #cnpjResult.error {
+    background-color: #FFCCCC;
+    color: #FF0000;
+}
+
+@media (max-width: 480px) {
+    body {
+        text-align: center;
+    }
+}
+
+@media (max-width: 1100px) {
+    body {
+            margin: 20px 150px;
+        }
+}
+
+@media (max-width: 800px) {
+    body {
+            margin: 20px;
+        }
+}

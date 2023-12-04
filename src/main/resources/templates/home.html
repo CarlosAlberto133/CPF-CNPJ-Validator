@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <title>CPF/CNPJ Validator API</title>
+</head>
+<body>
+
+<div class="nav">
+    <h1>CPF/CNPJ Validator API</h1>
+        <a href="https://github.com/CarlosAlberto133/CPF-CNPJ-Validator" target="_blank">
+            <i class="fab fa-github"></i> Open Code
+        </a>
+</div>
+
+<div id="container">
+    <h2>CPF Validation</h2>
+    <div class="formCPF">
+        <div id="cpfForm">
+            <p for="cpfInput">CPF:</p>
+            <input type="text" id="cpfInput" name="cpf" required>
+            <button type="button" onclick="validateCpf()">Validate CPF</button>
+            <div id="cpfResult"></div>
+        </div>
+    </div>
+
+    <h2>CNPJ Validation</h2>
+    <div class="formCNPJ">
+        <form id="cnpjForm">
+            <label for="cnpjInput">CNPJ:</label>
+            <input type="text" id="cnpjInput" name="cnpj" required>
+            <button type="button" onclick="validateCnpj()">Validate CNPJ</button>
+            <div id="cnpjResult"></div>
+        </form>
+    </div>
+
+    <div id="apiInfo">
+        <h2>API Information</h2>
+
+        <h3>CPF Validation Endpoint</h3>
+        <p>
+            Endpoint: <strong>GET /CPF?cpf={valor_do_cpf}</strong><br>
+            Parameters:
+        <ul>
+            <li><strong>cpf</strong>: The CPF number to be validated. Must be a valid CPF format.</li>
+        </ul>
+        Object Return:
+        <ul>
+            <li>{"mensagem": "CPF válido", "mensagem": "CPF inválido"}</li>
+        </ul>
+        </p>
+
+        <h3>CNPJ Validation Endpoint</h3>
+        <p>
+            Endpoint: <strong>GET /CNPJ?cnpj={valor_do_cnpj}</strong><br>
+            Parameters:
+        <ul>
+            <li><strong>cnpj</strong>: The CNPJ number to be validated. Must be a valid CNPJ format.</li>
+        </ul>
+        Object Return:
+        <ul>
+            <li>{"mensagem": "CNPJ válido", "mensagem": "CNPJ inválido"}</li>
+        </ul>
+        </p>
+
+        <h2>Additional Information</h2>
+        <p>
+            The CPF and CNPJ can be provided with or without special characters. The validation process will handle both cases, checking the format and validity of the numbers. The response will indicate whether the provided number is valid or invalid.
+        </p>
+    </div>
+</div>
+
+<script>
+    function validateCpf() {
+    var cpfInput = document.getElementById('cpfInput').value;
+    var cpfResult = document.getElementById('cpfResult');
+
+    // Realizar a requisição usando AJAX
+    var xhr = new XMLHttpRequest();
+    xhr.open('GET', '/CPF?cpf=' + cpfInput, true);
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState === 4) {
+            if (xhr.status === 200) {
+                // Exibir a resposta no elemento "cpfResult"
+                cpfResult.innerHTML = xhr.responseText;
+            } else {
+                cpfResult.innerHTML = xhr.responseText;
+            }
+        }
+    };
+    xhr.send();
+}
+
+    function validateCnpj() {
+        var cnpjInput = document.getElementById('cnpjInput').value;
+        var cnpjResult = document.getElementById('cnpjResult');
+
+        // Realizar a requisição usando AJAX
+        var xhr = new XMLHttpRequest();
+        xhr.open('GET', '/CNPJ?cnpj=' + cnpjInput, true);
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState === 4 && xhr.status === 200) {
+                // Exibir a resposta no elemento "cnpjResult"
+                cnpjResult.innerHTML = xhr.responseText;
+            } else if (xhr.readyState === 4) {
+                cnpjResult.innerHTML = xhr.responseText;
+            }
+        };
+        xhr.send();
+    }
+</script>
+
+</body>
+</html>
